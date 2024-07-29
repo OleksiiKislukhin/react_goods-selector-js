@@ -33,23 +33,17 @@ export const App = () => {
 
   return (
     <main className="section container">
-      {selectedGood ? (
-        <h1 className="title is-flex is-align-items-center">
-          {`${selectedGood} is selected`}
+      <h1 className="title is-flex is-align-items-center">
+        {selectedGood ? `${selectedGood} is selected` : 'No goods selected'}
+        {selectedGood && (
           <button
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
-            onClick={() => {
-              removeSelectedGood();
-            }}
+            onClick={removeSelectedGood}
           />
-        </h1>
-      ) : (
-        <h1 className="title is-flex is-align-items-center">
-          No goods selected
-        </h1>
-      )}
+        )}
+      </h1>
 
       <table className="table">
         <tbody>
@@ -70,9 +64,7 @@ export const App = () => {
                       data-cy="AddButton"
                       type="button"
                       className="button"
-                      onClick={() => {
-                        changeSelectedGood();
-                      }}
+                      onClick={changeSelectedGood(good)}
                     >
                       +
                     </button>
@@ -81,9 +73,7 @@ export const App = () => {
                       data-cy="RemoveButton"
                       type="button"
                       className="button is-info"
-                      onClick={() => {
-                        removeSelectedGood();
-                      }}
+                      onClick={removeSelectedGood}
                     >
                       -
                     </button>
