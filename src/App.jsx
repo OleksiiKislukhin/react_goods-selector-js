@@ -59,16 +59,7 @@ export const App = () => {
                 })}
               >
                 <td>
-                  {!isSelected ? (
-                    <button
-                      data-cy="AddButton"
-                      type="button"
-                      className="button"
-                      onClick={changeSelectedGood(good)}
-                    >
-                      +
-                    </button>
-                  ) : (
+                  {isSelected ? (
                     <button
                       data-cy="RemoveButton"
                       type="button"
@@ -76,6 +67,15 @@ export const App = () => {
                       onClick={removeSelectedGood}
                     >
                       -
+                    </button>
+                  ) : (
+                    <button
+                      data-cy="AddButton"
+                      type="button"
+                      className="button"
+                      onClick={() => changeSelectedGood(good)}
+                    >
+                      +
                     </button>
                   )}
                 </td>
