@@ -15,20 +15,13 @@ export const goods = [
   'Jam',
   'Garlic',
 ];
+const DEFAULT_SELECTED_GOOD = goods[8];
 
 export const App = () => {
-  const [selectedGood, setSelectedGood] = useState('Jam');
-
-  const changeSelectedGood = newGood => {
-    setSelectedGood(newGood);
-  };
+  const [selectedGood, setSelectedGood] = useState(DEFAULT_SELECTED_GOOD);
 
   const removeSelectedGood = () => {
     setSelectedGood(null);
-  };
-
-  const isSelectedGood = checkedGood => {
-    return selectedGood === checkedGood;
   };
 
   return (
@@ -40,7 +33,7 @@ export const App = () => {
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
-            onClick={() => removeSelectedGood()}
+            onClick={removeSelectedGood}
           />
         )}
       </h1>
@@ -48,7 +41,7 @@ export const App = () => {
       <table className="table">
         <tbody>
           {goods.map(good => {
-            const isSelected = isSelectedGood(good);
+            const isSelected = selectedGood === good;
 
             return (
               <tr
@@ -64,7 +57,7 @@ export const App = () => {
                       data-cy="RemoveButton"
                       type="button"
                       className="button is-info"
-                      onClick={() => removeSelectedGood()}
+                      onClick={removeSelectedGood}
                     >
                       -
                     </button>
@@ -73,7 +66,7 @@ export const App = () => {
                       data-cy="AddButton"
                       type="button"
                       className="button"
-                      onClick={() => changeSelectedGood(good)}
+                      onClick={() => setSelectedGood(good)}
                     >
                       +
                     </button>
